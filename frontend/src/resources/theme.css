@@ -1,0 +1,300 @@
+/* Inspired by Montra Expense Tracker UI Kit */
+
+/* Color Palette */
+:root {
+  --primary-color: #4F46E5; /* Indigo */
+  --secondary-color: #10B981; /* Emerald */
+  --accent-color: #F59E0B; /* Amber */
+
+  --text-primary: #1F2937; /* Cool Gray 800 */
+  --text-secondary: #4B5563; /* Cool Gray 600 */
+  --text-light: #F9FAFB; /* Cool Gray 50 */
+  --text-placeholder: #9CA3AF; /* Cool Gray 400 */
+
+
+  --bg-primary: #F9FAFB; /* Cool Gray 50 */
+  --bg-secondary: #FFFFFF;
+  --bg-dark: #111827; /* Cool Gray 900 for dark body */
+
+  --border-color: #E5E7EB; /* Cool Gray 200 */
+  --border-color-dark: #4B5563; /* Cool Gray 600 for dark borders */
+
+  /* Dark Mode Variables (already defined, ensure they are used below) */
+  --dark-bg-primary: #111827; /* Cool Gray 900 */
+  --dark-bg-secondary: #1F2937; /* Cool Gray 800 */
+  --dark-text-primary: #F9FAFB; /* Cool Gray 50 */
+  --dark-text-secondary: #D1D5DB; /* Cool Gray 300 */
+  --dark-text-placeholder: #6B7280; /* Cool Gray 500 */
+  --dark-border-color: #374151; /* Cool Gray 700 */
+}
+
+/* Typography */
+body {
+  font-family: 'Inter', sans-serif; /* Assuming Inter, a common modern font */
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
+  line-height: 1.6;
+  font-size: 16px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.5em;
+}
+
+h1 { font-size: 2.25rem; } /* 36px */
+h2 { font-size: 1.875rem; } /* 30px */
+h3 { font-size: 1.5rem; } /* 24px */
+h4 { font-size: 1.25rem; } /* 20px */
+
+p {
+  margin-bottom: 1em;
+  color: var(--text-secondary);
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Button Styles */
+.btn {
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.375rem; /* 6px */
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+  border: 1px solid transparent;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: var(--text-light);
+}
+
+.btn-primary:hover {
+  background-color: #4338CA; /* Darker Indigo */
+}
+
+.btn-secondary {
+  background-color: var(--secondary-color);
+  color: var(--text-light);
+}
+
+.btn-secondary:hover {
+  background-color: #059669; /* Darker Emerald */
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.btn-outline:hover {
+  background-color: var(--primary-color);
+  color: var(--text-light);
+}
+
+/* Card Styles */
+.card {
+  background-color: var(--bg-secondary);
+  border-radius: 0.5rem; /* 8px */
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  padding: 1.5rem; /* 24px */
+  margin-bottom: 1.5rem;
+  border: 1px solid var(--border-color);
+}
+
+/* Form Input Styles */
+.form-input,
+.form-select .ant-select-selector, /* Target AntD Select */
+.ant-picker { /* Target AntD DatePicker */
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 0.375rem !important; /* 6px, !important for AntD */
+  font-size: 1rem;
+  color: var(--text-primary);
+  background-color: var(--bg-secondary);
+  transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out, background-color 0.3s ease, color 0.3s ease;
+}
+.form-select .ant-select-selection-placeholder {
+    color: var(--text-placeholder) !important;
+}
+
+
+.form-input:focus,
+.form-select .ant-select-selector:focus-within, /* AntD focus */
+.ant-picker-focused { /* AntD DatePicker focus */
+  outline: none;
+  border-color: var(--primary-color) !important;
+  box-shadow: 0 0 0 0.2rem rgba(79, 70, 229, 0.25) !important; /* Indigo focus ring */
+}
+
+/* Utility Classes */
+.text-center { text-align: center; }
+.mt-1 { margin-top: 0.25rem; }
+.mt-2 { margin-top: 0.5rem; }
+.mt-3 { margin-top: 1rem; }
+.mb-1 { margin-bottom: 0.25rem; }
+.mb-2 { margin-bottom: 0.5rem; }
+.mb-3 { margin-bottom: 1rem; }
+.mr-2 { margin-right: 0.5rem; }
+.p-1 { padding: 0.25rem; }
+.p-2 { padding: 0.5rem; }
+.p-3 { padding: 1rem; }
+
+/* Basic Responsive Adjustments */
+@media (max-width: 768px) {
+  h1 { font-size: 1.875rem; }
+  h2 { font-size: 1.5rem; }
+  .btn { padding: 0.6rem 1.2rem; font-size: 0.85rem;}
+}
+
+/* Dark Mode Styles */
+body.dark-mode {
+  background-color: var(--dark-bg-primary);
+  color: var(--dark-text-primary);
+}
+
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode h4,
+body.dark-mode h5,
+body.dark-mode h6 {
+  color: var(--dark-text-primary);
+}
+
+body.dark-mode p {
+  color: var(--dark-text-secondary);
+}
+
+body.dark-mode a {
+  color: var(--primary-color); /* Keep primary color for links or adjust if needed */
+}
+
+body.dark-mode .card {
+  background-color: var(--dark-bg-secondary);
+  border-color: var(--dark-border-color);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -1px rgba(0, 0, 0, 0.15);
+}
+
+body.dark-mode .form-input,
+body.dark-mode .form-select .ant-select-selector,
+body.dark-mode .ant-picker {
+  background-color: var(--dark-bg-secondary); /* Darker input background */
+  color: var(--dark-text-primary);
+  border-color: var(--dark-border-color);
+}
+body.dark-mode .form-select .ant-select-selection-placeholder {
+    color: var(--dark-text-placeholder) !important;
+}
+body.dark-mode .form-select .ant-select-arrow,
+body.dark-mode .ant-picker-suffix {
+    color: var(--dark-text-secondary);
+}
+
+
+body.dark-mode .btn-outline {
+  color: var(--primary-color); /* Or a lighter variant for dark mode */
+  border-color: var(--primary-color); /* Or a lighter variant */
+}
+
+body.dark-mode .btn-outline:hover {
+  background-color: var(--primary-color);
+  color: var(--text-light); /* Ensure contrast */
+}
+
+/* Ant Design Dark Mode Overrides (General) */
+body.dark-mode .ant-select-dropdown {
+  background-color: var(--dark-bg-secondary) !important;
+  border: 1px solid var(--dark-border-color) !important;
+}
+body.dark-mode .ant-select-item {
+  color: var(--dark-text-secondary) !important;
+}
+body.dark-mode .ant-select-item-option-selected,
+body.dark-mode .ant-select-item-option-active {
+  background-color: rgba(79, 70, 229, 0.2) !important; /* Primary color with opacity */
+  color: var(--dark-text-primary) !important;
+}
+body.dark-mode .ant-picker-panel-container {
+    background-color: var(--dark-bg-secondary) !important;
+    border: 1px solid var(--dark-border-color) !important;
+}
+body.dark-mode .ant-picker-header,
+body.dark-mode .ant-picker-header button {
+    color: var(--dark-text-primary) !important;
+}
+body.dark-mode .ant-picker-content th,
+body.dark-mode .ant-picker-cell {
+    color: var(--dark-text-secondary) !important;
+}
+body.dark-mode .ant-picker-cell-in-view.ant-picker-cell-selected .ant-picker-cell-inner,
+body.dark-mode .ant-picker-cell-in-view.ant-picker-cell-today .ant-picker-cell-inner::before {
+    background-color: var(--primary-color) !important;
+    color: var(--text-light) !important;
+}
+body.dark-mode .ant-picker-cell-in-view:hover .ant-picker-cell-inner {
+    background-color: rgba(79, 70, 229, 0.2) !important;
+}
+
+body.dark-mode .ant-table {
+    background: var(--dark-bg-secondary) !important;
+    color: var(--dark-text-primary) !important;
+}
+body.dark-mode .ant-table-thead > tr > th {
+    background: #161E29 !important; /* Slightly darker than card bg */
+    color: var(--dark-text-primary) !important;
+    border-bottom: 1px solid var(--dark-border-color) !important;
+}
+body.dark-mode .ant-table-tbody > tr > td {
+    border-bottom: 1px solid var(--dark-border-color) !important;
+    color: var(--dark-text-secondary) !important;
+}
+body.dark-mode .ant-table-tbody > tr.ant-table-row:hover > td {
+    background: #2C3A4B !important; /* Hover for table rows */
+}
+body.dark-mode .ant-table-placeholder .ant-empty-description {
+    color: var(--dark-text-secondary) !important;
+}
+body.dark-mode .ant-pagination-item,
+body.dark-mode .ant-pagination-prev .ant-pagination-item-link,
+body.dark-mode .ant-pagination-next .ant-pagination-item-link {
+    background-color: transparent !important;
+    color: var(--dark-text-secondary) !important;
+    border-color: var(--dark-border-color) !important;
+}
+body.dark-mode .ant-pagination-item-active {
+    background-color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+}
+body.dark-mode .ant-pagination-item-active a {
+    color: var(--text-light) !important;
+}
+
+body.dark-mode .ant-modal-content {
+    background-color: var(--dark-bg-secondary) !important;
+}
+body.dark-mode .ant-modal-header {
+    background-color: var(--dark-bg-secondary) !important;
+    border-bottom: 1px solid var(--dark-border-color) !important;
+}
+body.dark-mode .ant-modal-title,
+body.dark-mode .ant-modal-close-x {
+    color: var(--dark-text-primary) !important;
+}
+
+/* Add more specific dark mode styles for navigation, charts, tables, modals etc. as needed */

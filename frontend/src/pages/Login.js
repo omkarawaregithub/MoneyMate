@@ -1,11 +1,10 @@
-import React, { useState } from 'react'
-import { Form, message } from 'antd'
+import React, { useState, useEffect } from 'react'
+import { Form, Input, Button, message } from 'antd'
 import { Link, useNavigate } from 'react-router-dom'
-import Input from 'antd/lib/input/Input'
-import '../resources/authentication.css'
+import { UserOutlined, LockOutlined } from '@ant-design/icons'
 import axios from 'axios'
+import '../resources/auth.css'
 import Spinner from '../components/Spinner'
-import { useEffect } from 'react'
 
 const Login = () => {
   const host =
@@ -13,22 +12,20 @@ const Login = () => {
       ? 'https://cash-book.vercel.app'
       : 'http://localhost:5000'
 
-  //  const host = 'http://localhost:5000'
-
-  const navigate = useNavigate()
   const [loading, setLoading] = useState(false)
+  const navigate = useNavigate()
 
   const onFinish = async (values) => {
     try {
       setLoading(true)
       const response = await axios.post(`${host}/api/users/login`, values)
       localStorage.setItem('Cashbook-User', JSON.stringify(response.data))
-      setLoading(false)
-      message.success('Login Successful')
-      navigate('/')
+      message.success('Login successful!')
+      navigate('/dashboard')
     } catch (error) {
+      message.error('Login failed. Please check your credentials.')
+    } finally {
       setLoading(false)
-      message.error('Login Failed')
     }
   }
 
@@ -39,46 +36,63 @@ const Login = () => {
   }, [navigate])
 
   return (
-    <div className='register'>
+    <div className='auth-container'>
       {loading && <Spinner />}
-      <div className='row justify-content-center align-items-center w-100 h-100'>
-        {/* For the input form */}
-        <div className='credentials-form col-md-4'>
-          <Form layout='vertical' onFinish={onFinish}>
-            <div className='d-flex justify-content-center'>
-              <h1>LOGIN</h1>
-            </div>
-
-            <Form.Item label='Email' name='email'>
-              <Input />
-            </Form.Item>
-
-            <Form.Item label='Password' name='password'>
-              <Input type='password' />
-            </Form.Item>
-
-            <div className='d-flex justify-content-between align-items-center'>
-              <Link to='/register'>
-                Not Registered yet,Click Here To Register
-              </Link>
-              <button className='secondary' type='submit'>
-                LOGIN
-              </button>
-            </div>
-          </Form>
+      <div className='auth-card'>
+        <div className='auth-header'>
+          <img
+            src='/assets/moneymate.png'
+            alt='MoneyMate Logo'
+            className='auth-logo'
+          />
+          <h1 className='auth-title'>Welcome back!</h1>
+          <p className='auth-subtitle'>Please sign in to continue</p>
         </div>
 
-        {/* For the animation*/}
-        <div className='col-md-5'>
-          <div className='lottie'>
-            <lottie-player
-              src='https://assets1.lottiefiles.com/packages/lf20_06a6pf9i.json'
-              background='transparent'
-              speed='1'
-              loop
-              autoplay
-            ></lottie-player>
-          </div>
+        <Form
+          name='login'
+          className='auth-form'
+          onFinish={onFinish}
+          layout='vertical'
+        >
+          <Form.Item
+            name='email'
+            rules={[{ required: true, message: 'Please enter your email' }]}
+          >
+            <Input
+              prefix={<UserOutlined />}
+              placeholder='Email'
+              size='large'
+            />
+          </Form.Item>
+
+          <Form.Item
+            name='password'
+            rules={[
+              { required: true, message: 'Please enter your password' },
+            ]}
+          >
+            <Input.Password
+              prefix={<LockOutlined />}
+              placeholder='Password'
+              size='large'
+            />
+          </Form.Item>
+
+          <Button
+            type='primary'
+            htmlType='submit'
+            block
+            size='large'
+            loading={loading}
+          >
+            Sign In
+          </Button>
+        </Form>
+
+        <div className='auth-links'>
+          <Link to='/forgot-password'>Forgot password?</Link>
+          <Link to='/register'>Create account</Link>
         </div>
       </div>
     </div>

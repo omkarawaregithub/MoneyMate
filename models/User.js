@@ -14,6 +14,10 @@ const userSchema = mongoose.Schema(
       type: String,
       required: true,
     },
+    preferredCurrency: {
+      type: String,
+      default: 'USD', // Default to USD, can be changed by user
+    },
   },
   {
     timestamps: true,

@@ -9,7 +9,10 @@ const transactionSchema = mongoose.Schema({
     type: Number,
     required: true,
   },
-
+  currency: {
+    type: String,
+    required: true,
+  },
   type: {
     type: String,
     required: true,

@@ -38,4 +38,22 @@ router.post('/register', async (req, res) => {
   }
 })
 
+// For Updating User Profile
+router.put('/update-profile', async (req, res) => {
+  try {
+    const { userId, ...updatedFields } = req.body
+    const user = await User.findByIdAndUpdate(userId, updatedFields, {
+      new: true,
+    }).select('-password')
+
+    if (user) {
+      res.send(user)
+    } else {
+      res.status(404).json({ message: 'User not found' })
+    }
+  } catch (error) {
+    res.status(500).json(error)
+  }
+})
+
 export default router

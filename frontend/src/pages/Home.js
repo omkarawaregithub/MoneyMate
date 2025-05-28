@@ -20,7 +20,7 @@ const Home = () => {
 
   const host =
     process.env.NODE_ENV === 'production'
-      ? 'https://cash-book.vercel.app'
+      ? 'https://Money-mate.vercel.app'
       : 'http://localhost:5000'
   //  const host = 'http://localhost:5000'
 
@@ -82,7 +82,7 @@ const Home = () => {
 
   useEffect(() => {
     getTransactions()
-  }, [frequency, selectedRange, type])
+  }, [frequency, selectedRange, type, getTransactions])
 
   const columns = [
     {
@@ -93,6 +93,11 @@ const Home = () => {
     {
       title: 'Amount',
       dataIndex: 'amount',
+      render: (text, record) => <span>{record.amount} {record.currency}</span>,
+    },
+    {
+      title: 'Currency',
+      dataIndex: 'currency',
     },
     {
       title: 'Category',

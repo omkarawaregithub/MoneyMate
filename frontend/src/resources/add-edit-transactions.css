@@ -1,0 +1,63 @@
+/* AddEditTransactions Modal Specific Styles */
+
+.modern-transaction-form .ant-form-item-label > label {
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.modern-transaction-form .form-input,
+.modern-transaction-form .form-select .ant-select-selector {
+  /* Styles are largely inherited from theme.css .form-input and .form-select */
+  /* Add any specific overrides if needed */
+  border-radius: 0.375rem; /* 6px */
+}
+
+.modern-transaction-form .ant-picker { /* DatePicker */
+  border-radius: 0.375rem !important; /* Ensure AntD DatePicker gets border-radius */
+}
+
+
+.modern-transaction-form .form-actions {
+  margin-top: 1.5rem; /* 24px */
+  text-align: right; /* Align buttons to the right */
+}
+
+.modern-transaction-form .form-actions .btn {
+  /* Button styles are inherited from theme.css */
+  /* Add specific modal button adjustments if needed */
+  padding-top: 0.6rem;
+  padding-bottom: 0.6rem;
+}
+
+.ant-modal-header {
+  background-color: var(--bg-primary) !important;
+  border-bottom: 1px solid var(--border-color) !important;
+  border-radius: 0.5rem 0.5rem 0 0 !important; /* Match card radius */
+}
+
+.ant-modal-title {
+  color: var(--text-primary) !important;
+  font-weight: 600 !important;
+}
+
+.ant-modal-content {
+  background-color: var(--bg-secondary) !important;
+  border-radius: 0.5rem !important;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.15) !important;
+}
+
+.ant-modal-close-x {
+  color: var(--text-secondary) !important;
+}
+.ant-modal-close-x:hover {
+  color: var(--primary-color) !important;
+}
+
+/* Ensure spinner inside modal is centered if used */
+.ant-modal-body .spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10; /* Above form content */
+}

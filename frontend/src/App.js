@@ -1,38 +1,30 @@
 import './App.css'
+import './resources/theme.css'
 import 'antd/dist/antd.css'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
-import Home from './pages/Home'
+import Dashboard from './pages/Dashboard'
 import Login from './pages/Login'
 import Register from './pages/Register'
+import AddExpense from './pages/AddExpense'  // Changed from AddNew
+import ExpenseHistory from './pages/ExpenseHistory'
+import Reports from './pages/Reports'
+import Settings from './pages/Settings'
 
 function App() {
-  // Here routing is done
   return (
-    <div className='App'>
-      <BrowserRouter>
-        <Routes>
-          <Route
-            path='/'
-            element={
-              <ProtectedRoute>
-                <Home />
-              </ProtectedRoute>
-            }
-          ></Route>
-          <Route path='/login' element={<Login />}></Route>
-          <Route path='/register' element={<Register />}></Route>
-        </Routes>
-      </BrowserRouter>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/add-new" element={<AddExpense />} />  // Changed from AddNew to AddExpense
+        <Route path="/history" element={<ExpenseHistory />} />
+        <Route path="/reports" element={<Reports />} />
+        <Route path="/settings" element={<Settings />} />
+        <Route path="/" element={<Navigate to="/dashboard" />} />
+      </Routes>
+    </BrowserRouter>
   )
-}
-
-export const ProtectedRoute = (props) => {
-  if (localStorage.getItem('Cashbook-User')) {
-    return props.children
-  } else {
-    return <Navigate to='/login' />
-  }
 }
 
 export default App
